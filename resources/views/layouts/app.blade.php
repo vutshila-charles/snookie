@@ -23,7 +23,7 @@
             @auth
                 @livewire('navigation-menu')
             @else
-                @include('guest-navigation')
+                {{-- @include('guest-navigation') --}}
             @endauth
 
             <!-- Page Heading -->

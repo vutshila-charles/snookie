@@ -8,16 +8,22 @@ use App\Models\Experience;
 use App\Models\PersonalDetails;
 use App\Models\Responsibility;
 use App\Models\Skill;
+use App\Models\User;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\TemporaryUploadedFile;
 
 class Dashboard extends Component
 {
+    use WithFileUploads;
     public Skill $skill;
     public Experience $experience;
     public Responsibility $responsibility;
     public Education $education;
     public PersonalDetails $personalDetails;
     public EducationSubject $educationSubject;
+    public $user;
+    public $image;
 
     public function makeBlankSkill()
     {
@@ -45,11 +51,17 @@ class Dashboard extends Component
     }
     public function mount()
     {
+        $this->user = User::find(auth()->user()->id);
         $this->skill = $this->makeBlankSkill();
         $this->experience = $this->makeBlankExperience();
         $this->responsibility = $this->makeBlankResponsibility();
         $this->education = $this->makeBlankEducation();
-        $this->personalDetails = $this->makeBlankPersonalDetails();
+        if(auth()->user()->personalDetails){
+            $this->personalDetails = auth()->user()->personalDetails;
+        }else{
+            $this->personalDetails = $this->makeBlankPersonalDetails();
+        }
+        // $this->personalDetails = $this->makeBlankPersonalDetails();
         $this->educationSubject = $this->makeBlankEducationSubject();
     }
     public function rules()
@@ -77,24 +89,31 @@ class Dashboard extends Component
             // 'education.country' => 'required',
             // 'education.zip' => 'required',
             // 'education.website' => 'required',
-            'personalDetails.name' => 'required',
-            'personalDetails.email' => 'required',
-            'personalDetails.phone' => 'required',
-            'personalDetails.about' => 'required',
-            'personalDetails.address' => 'required',
-            'personalDetails.city' => 'required',
-            'personalDetails.state' => 'required',
-            'personalDetails.zip' => 'required',
-            'personalDetails.country' => 'required',
-            'personalDetails.website' => 'required',
-            'personalDetails.github' => 'required',
-            'personalDetails.linkedin' => 'required',
-            'personalDetails.twitter' => 'required',
-            'personalDetails.facebook' => 'required',
-            'personalDetails.instagram' => 'required',
-            'personalDetails.youtube' => 'required',
+            'personalDetails.name'      => 'nullable',
+            'personalDetails.email'     => 'nullable',
+            'personalDetails.phone'     => 'nullable',
+            'personalDetails.about'     => 'nullable',
+            'personalDetails.address'   => 'nullable',
+            'personalDetails.city'      => 'nullable',
+            'personalDetails.state'     => 'nullable',
+            'personalDetails.zip'       => 'nullable',
+            'personalDetails.country'   => 'nullable',
+            'personalDetails.website'   => 'nullable',
+            'personalDetails.github'    => 'nullable',
+            'personalDetails.linkedin'  => 'nullable',
+            'personalDetails.twitter'   => 'nullable',
+            'personalDetails.facebook'  => 'nullable',
+            'personalDetails.instagram' => 'nullable',
+            'personalDetails.youtube'   => 'nullable',
         ];
     
+    }
+    public function savePersonalDetails()
+    {
+        $this->personalDetails->user_id = auth()->user()->id;
+        $this->personalDetails->email   = auth()->user()->email;
+        //$this->user->profile_path_photo = $this->image;
+        $this->personalDetails->save();
     }
 
     public function render()

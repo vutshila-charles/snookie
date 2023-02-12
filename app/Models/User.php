@@ -58,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the personal details for the user.
+     */
+    public function personalDetails()
+    {
+        return $this->hasOne(PersonalDetails::class);
+    }
 }
