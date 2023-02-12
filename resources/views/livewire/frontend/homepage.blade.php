@@ -290,7 +290,7 @@
           <div class="md:ml-auto md:w-1/2 md:pl-10">
             <h2 class="text-lg font-semibold text-gray-300">The best support</h2>
             <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">I'm here to help</p>
-            <p class="mt-3 text-lg text-gray-300">Hiring you as a bookkeeper can provide a business with the expertise, organization, and technological savvy they need to manage their finances effectively. You can help businesses stay compliant with tax regulations, save time and money, and make informed financial decisions.</p>
+            <p class="mt-3 text-lg text-gray-300">Hiring me as a bookkeeper can provide a business with the expertise, organization, and technological savvy they need to manage their finances effectively. You can help businesses stay compliant with tax regulations, save time and money, and make informed financial decisions.</p>
             <div class="mt-8">
               <div class="inline-flex rounded-md shadow">
                 <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-900 bg-white border border-transparent rounded-md hover:bg-gray-50">
